@@ -41,6 +41,14 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         table.reloadData()
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete {
+            taskList.remove(at: indexPath.row)
+            table.reloadData()
+            UserDefaults.standard.set(taskList, forKey: "taskList")
+        }
+    }
 
 }
 
